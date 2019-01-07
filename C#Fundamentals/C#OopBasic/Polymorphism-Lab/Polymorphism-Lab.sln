@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathOperation", "MathOperation\MathOperation.csproj", "{FC198FAF-CFBB-464D-823F-E9444D764AA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animals", "Animals\Animals.csproj", "{9A8D5F3E-0FDA-49BE-B5C0-DBE645D72ADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes", "Shapes\Shapes.csproj", "{530C8E3C-A468-4FE8-8CB5-C1B8C4737897}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC198FAF-CFBB-464D-823F-E9444D764AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC198FAF-CFBB-464D-823F-E9444D764AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC198FAF-CFBB-464D-823F-E9444D764AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC198FAF-CFBB-464D-823F-E9444D764AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8D5F3E-0FDA-49BE-B5C0-DBE645D72ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8D5F3E-0FDA-49BE-B5C0-DBE645D72ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8D5F3E-0FDA-49BE-B5C0-DBE645D72ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8D5F3E-0FDA-49BE-B5C0-DBE645D72ADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{530C8E3C-A468-4FE8-8CB5-C1B8C4737897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530C8E3C-A468-4FE8-8CB5-C1B8C4737897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530C8E3C-A468-4FE8-8CB5-C1B8C4737897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530C8E3C-A468-4FE8-8CB5-C1B8C4737897}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {340AA331-3431-4864-88DD-A405E9C1249B}
+	EndGlobalSection
+EndGlobal

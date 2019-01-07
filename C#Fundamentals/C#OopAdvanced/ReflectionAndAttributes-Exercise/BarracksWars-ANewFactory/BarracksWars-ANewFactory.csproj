@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>BarracksWars_ANewFactory</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include=".vs\P03_BarraksWars\DesignTimeBuild\.dtbcache" />
+    <None Include=".vs\P03_BarraksWars\v15\.suo" />
+    <None Include=".vs\P03_BarraksWars\v15\Server\sqlite3\db.lock" />
+    <None Include=".vs\P03_BarraksWars\v15\Server\sqlite3\storage.ide" />
+    <None Include=".vs\P03_BarraksWars\v15\Server\sqlite3\storage.ide-shm" />
+    <None Include=".vs\P03_BarraksWars\v15\Server\sqlite3\storage.ide-wal" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Commands\" />
+  </ItemGroup>
+
+</Project>
