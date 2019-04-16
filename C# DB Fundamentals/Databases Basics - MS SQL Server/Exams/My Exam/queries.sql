@@ -180,29 +180,25 @@ WHERE ss.SubjectId IS NULL
 ORDER BY [Full Name]
 
 -- 15 --
-SELECT TOP(10)
-temp.[Teacher Full Name],
-temp.[Subject Name],
-temp.[Student Full Name],
-temp.Grade
-FROM (SELECT
-CONCAT(t.FirstName, ' ' + t.LastName) AS [Teacher Full Name],
-subt.[Name] AS [Subject Name],
-CONCAT(s.FirstName, ' ' + s.LastName) AS [Student Full Name],
-ROW_NUMBER() OVER (PARTITION BY s.Id, t.Id ORDER BY AVG(ss.Grade) DESC) AS GradeRank,
-FORMAT(AVG(ss.Grade), 'N2') AS Grade
-FROM Teachers AS t 
-JOIN StudentsTeachers AS st ON st.TeacherId = t.Id
-JOIN Students As s ON s.Id = st.StudentId
-JOIN StudentsSubjects AS ss ON ss.StudentId = s.Id
-JOIN Subjects AS sub ON sub.Id = ss.SubjectId
-JOIN Subjects AS subt ON subt.Id = t.SubjectId
-GROUP BY t.FirstName, t.LastName, subt.[Name], s.FirstName, s.LastName, s.Id, t.Id
-) AS temp
-WHERE temp.GradeRank = 1
-ORDER BY temp.[Subject Name], temp.[Teacher Full Name], temp.Grade DESC
-
---GROUP BY t.FirstName, t.LastName, s.FirstName, s.LastName, subt.Name, 
+SELECT j.[Teacher Full Name], j.SubjectName ,j.[Student Full Name], FORMAT(j.TopGrade, 'N2') AS Grade
+  FROM (
+SELECT k.[Teacher Full Name],k.SubjectName, k.[Student Full Name], k.AverageGrade  AS TopGrade,
+	   ROW_NUMBER() OVER (PARTITION BY k.[Teacher Full Name] ORDER BY k.AverageGrade DESC) AS RowNumber
+  FROM (
+  SELECT t.FirstName + ' ' + t.LastName AS [Teacher Full Name],
+  	   s.FirstName + ' ' + s.LastName AS [Student Full Name],
+  	   AVG(ss.Grade) AS AverageGrade,
+  	   su.Name AS SubjectName
+    FROM Teachers AS t 
+    JOIN StudentsTeachers AS st ON st.TeacherId = t.Id
+    JOIN Students AS s ON s.Id = st.StudentId
+    JOIN StudentsSubjects AS ss ON ss.StudentId = s.Id
+    JOIN Subjects AS su ON su.Id = ss.SubjectId AND su.Id = t.SubjectId
+GROUP BY t.FirstName, t.LastName, s.FirstName, s.LastName, su.Name
+) AS k
+) AS j
+   WHERE j.RowNumber = 1 
+ORDER BY j.SubjectName,j.[Teacher Full Name], TopGrade DESC
 
 -- 16 --
 SELECT 
@@ -292,19 +288,3 @@ BEGIN
 INSERT INTO ExcludedStudents(StudentId, StudentName)
 SELECT Id, CONCAT(FirstName, ' ' + LastName) FROM deleted
 END
-
--- 15 --
-SELECT k.[Teacher Full Name], k.[Name], k.[Student Full Name], k.Grade 
-FROM (SELECT
-CONCAT(t.FirstName, ' ' + t.LastName) AS [Teacher Full Name],
-s.[Name],
-CONCAT(stud.FirstName, ' ' + stud.LastName) AS [Student Full Name],
-FORMAT(AVG(ss.Grade), 'N2') AS Grade,
-ROW_Number() OVER (PARTITION BY s.Id, t.Id ORDER BY AVG(ss.Grade) DESC) AS GradeRank
-FROM Teachers AS t
-JOIN Subjects AS s ON s.Id = t.SubjectId
-JOIN StudentsSubjects AS ss ON ss.SubjectId = s.Id
-JOIN Students AS stud ON stud.Id = ss.StudentId
-GROUP BY t.FirstName, t.LastName, stud.FirstName, stud.LastName, s.Name, s.Id, t.Id) AS k
-WHERE k.GradeRank = 1
-ORDER BY k.[Name], k.[Teacher Full Name], k.Grade DESC
